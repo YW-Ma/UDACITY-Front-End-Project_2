@@ -65,10 +65,16 @@ section {
 
 /* Navigation Styles*/
 .navbar__menu ul {
-    display: flex;
-    padding-left: 0;
-    margin: 0;
-    text-align: right;
+    background-color: #333;
+    /* Black background color */
+    position: fixed;
+    /* Make it stick/fixed */
+    top: 0;
+    /* Stay on top */
+    width: 100%;
+    /* Full width */
+    transition: top 0.3s;
+    /* Transition effect when sliding down (and up) */
 }
 
 .navbar__menu li {
@@ -76,21 +82,21 @@ section {
 }
 
 .navbar__menu .menu__link {
+    float: left;
     display: block;
-    padding: 1em;
-    font-weight: bold;
+    text-align: center;
+    padding: 15px;
     text-decoration: none;
-    color: #000;
 }
 
 .navbar__menu .menu__link:hover {
-    background: #333;
-    color: #fff;
-    transition: ease 0.3s all;
+    background-color: #ddd;
+    color: black;
 }
 
 .navbar__active{
-    background: rgb(225, 245, 110);
+    background-color: rgba(187, 187, 187, 0.178);
+    color: black;
 }
 
 /* Header Styles */

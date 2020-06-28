@@ -53,8 +53,10 @@ for (let i = 4; i <= 7; i++) {
 const navBar = document.querySelector('#navbar__list');
 // insert content to the navBar
 document.querySelectorAll('section').forEach(section => {
-  navBar.insertAdjacentHTML('beforeend', `<li><a href="${section.id}">${section.dataset.nav}</a></li>`)
+  navBar.insertAdjacentHTML('beforeend', `<li onClick = "location.href='#${section.id}'">${section.dataset.nav}</li>`)
 });
+// set the list element as a "button", not use hyperlink in the text(it's really ugly)
+
 // add attribute to these content
 const navbarContents = document.querySelectorAll('li');
 document.querySelectorAll('li').forEach(item => {
@@ -62,6 +64,19 @@ document.querySelectorAll('li').forEach(item => {
 });
 
 // Add class 'active' to section when near top of viewport 
+/* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.querySelector(".navbar__menu ul").style.top = "-15px";
+  } else {
+    document.querySelector(".navbar__menu ul").style.top = "-1000px";
+  }
+  prevScrollpos = currentScrollPos;
+}
+
+
 // Haha, I add 'active' to both section and the corresponding item in navbar.
 const activate = (inView, section, item) => {
   if (inView) {
@@ -80,7 +95,7 @@ const activeSection = () => {
     const sectionOffset = (Math.floor(section.getBoundingClientRect().top));
 
     deactivate(section, item);
-    activate((sectionOffset < 100 && sectionOffset >= -100), section, item);
+    activate((sectionOffset < 300 && sectionOffset >= -300), section, item);
   })
 }
 window.addEventListener('scroll', activeSection);
